@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:51:46 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/11/27 18:14:59 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/11/27 20:39:54 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ int	main(void)
 			if (std::cin >> search)
 				phone.printContact(search);
 			else
+			{
 				std::cout << "Invalid index" << std::endl;
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
 		}
 		else if (choice == "EXIT")
 			break ;
 		else
 			std::cout << "Please enter a valid command" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	std::cout << "Bye !!" << std::endl;
 	return 0;
