@@ -5,33 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/29 20:03:01 by rpandipe          #+#    #+#              #
-#    Updated: 2024/12/02 21:31:51 by rpandipe         ###   ########.fr        #
+#    Created: 2024/12/02 21:23:54 by rpandipe          #+#    #+#              #
+#    Updated: 2024/12/02 21:33:49 by rpandipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 CFLAG = -Wall -Wextra -Werror -std=c++98
-NAME = harlFilter
+NAME = fixed
 SRCS = $(wildcard *.cpp)
-OBJSDIR = objs
-OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.cpp=.o))
-RM = rm - rf
+OBJDIR = objs
+OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
+RM = rm -rf
 
 all: $(NAME)
 
-$(OBJSDIR)/%.o : %.cpp
-	@mkdir -p $(OBJSDIR)
+$(OBJDIR)/%.o : %.cpp
+	@mkdir -p $(OBJDIR)
 	@$(CXX) $(CFLAG) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	$(CXX) $(CFLAG) -o $@ $(OBJS)
+	@$(CXX) $(CFLAG) -o $@ $(OBJS)
 
 clean:
-	$(RM) $(OBJSDIR)
+	@$(RM) $(OBJDIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
