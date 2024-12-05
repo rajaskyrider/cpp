@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 21:17:11 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/03 21:34:15 by rpandipe         ###   ########.fr       */
+/*   Created: 2024/12/04 17:01:18 by rpandipe          #+#    #+#             */
+/*   Updated: 2024/12/05 01:56:29 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef __DIAMONDTRAP_HPP__
+# define __DIAMONDTRAP_HPP__
 
-int	main()
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
+
+class DiamondTrap : public ScavTrap, public FragTrap
 {
-	ClapTrap bot("bot");
-	ClapTrap npc(bot);
-	ClapTrap dummy;
+	public:
+		DiamondTrap();
+		DiamondTrap(std::string name);
+		DiamondTrap(DiamondTrap &other);
+		DiamondTrap&	operator=(DiamondTrap &other);
+		~DiamondTrap();
 
-	bot.attack("enemy");
-	bot.takeDamage(8);
-	bot.beRepaired(6);
-	dummy = npc;
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	dummy.beRepaired(5);
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	return 0;
-}
+		void whoAmI();
+		
+	private:
+		std::string m_name;
+
+};
+
+#endif

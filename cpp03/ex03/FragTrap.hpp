@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 21:17:11 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/03 21:34:15 by rpandipe         ###   ########.fr       */
+/*   Created: 2024/12/04 10:38:43 by rpandipe          #+#    #+#             */
+/*   Updated: 2024/12/04 23:49:17 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#ifndef __FRAGTRAP_HPP__
+# define __FRAGTRAP_HPP__
+
 #include "ClapTrap.hpp"
+#include <iostream>
 
-int	main()
+class FragTrap : virtual public ClapTrap
 {
-	ClapTrap bot("bot");
-	ClapTrap npc(bot);
-	ClapTrap dummy;
+	public:
+		FragTrap();
+		FragTrap(const FragTrap &other);
+		FragTrap(const std::string &name);
+		FragTrap&	operator=(const FragTrap &other);
+		~FragTrap();
+		
+		void highFivesGuys(void);
 
-	bot.attack("enemy");
-	bot.takeDamage(8);
-	bot.beRepaired(6);
-	dummy = npc;
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	dummy.beRepaired(5);
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	return 0;
-}
+};
+
+#endif
+

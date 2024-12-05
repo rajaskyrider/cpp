@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 21:17:11 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/03 21:34:15 by rpandipe         ###   ########.fr       */
+/*   Created: 2024/12/04 10:38:43 by rpandipe          #+#    #+#             */
+/*   Updated: 2024/12/04 11:35:14 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#ifndef __SCAVTRAP_HPP__
+# define __SCAVTRAP_HPP__
+
 #include "ClapTrap.hpp"
+#include <iostream>
 
-int	main()
+class ScavTrap : public ClapTrap
 {
-	ClapTrap bot("bot");
-	ClapTrap npc(bot);
-	ClapTrap dummy;
+	public:
+		ScavTrap();
+		ScavTrap(const ScavTrap &other);
+		ScavTrap(const std::string &name);
+		ScavTrap&	operator=(const ScavTrap &other);
+		~ScavTrap();
+		
+		void	guardGate();
+		void	attack(const std::string& target);
+	private:
 
-	bot.attack("enemy");
-	bot.takeDamage(8);
-	bot.beRepaired(6);
-	dummy = npc;
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	dummy.beRepaired(5);
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	return 0;
-}
+};
+
+#endif
+

@@ -5,27 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 21:17:11 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/03 21:34:15 by rpandipe         ###   ########.fr       */
+/*   Created: 2024/12/05 01:00:41 by rpandipe          #+#    #+#             */
+/*   Updated: 2024/12/05 01:04:25 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main()
 {
-	ClapTrap bot("bot");
-	ClapTrap npc(bot);
-	ClapTrap dummy;
+	DiamondTrap test("hero");
 
-	bot.attack("enemy");
-	bot.takeDamage(8);
-	bot.beRepaired(6);
-	dummy = npc;
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	dummy.beRepaired(5);
-	dummy.attack("enemy2");
-	dummy.takeDamage(10);
-	return 0;
+	test.whoAmI();
+	test.attack("villian");	
 }
