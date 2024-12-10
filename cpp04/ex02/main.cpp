@@ -6,37 +6,37 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:55:38 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 12:44:26 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:21:25 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	//const AAnimal* meta = new AAnimal();
+	const AAnimal* j = new Dog();
+	const AAnimal* i = new Cat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
-	meta->makeSound();
+	//meta->makeSound();
 	
-	delete meta;
+	//delete meta;
 	delete j;
 	delete i;
 
-	const WrongAnimal* k = new WrongAnimal();
-	const WrongAnimal* l = new WrongCat();
-	std::cout << l->getType() << " " << std::endl;
-	k->makeSound();
-	l->makeSound();
-	delete k;
-	delete l;
-	return 0;
+	Dog basic;
+	{
+    	Dog tmp = basic;
+	}
+    const AAnimal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
+    for ( int i = 0; i < 4; i++ ) {
+        delete animals[i];
+    }
+
+    return 0;
 }

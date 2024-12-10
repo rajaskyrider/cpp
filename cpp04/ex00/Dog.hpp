@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:53:51 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/06 02:03:17 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/08 23:29:42 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ class Dog: public Animal
 {
 	public:
 		Dog();
-		Dog(Dog &other);
-		Dog& operator=(Dog &other);
+		Dog(const Dog &other);
+		Dog& operator=(const Dog &other);
 		~Dog();
 
 		virtual void 		makeSound() const;

@@ -6,19 +6,20 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:53:47 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 23:29:52 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/08 23:42:02 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog(): Animal("Dog"), brain(new Brain())
 {
 	std::cout << "| Dog Class | default constructor called !" << std::endl;
 }
 
 Dog::Dog(const Dog &other): Animal(other)
 {
+	this->brain = new Brain(*other.brain);
 	std::cout << "| Dog Class | copy constructor called !" << std::endl;
 }
 
@@ -34,6 +35,7 @@ Dog& Dog::operator=(const Dog &other)
 
 Dog::~Dog()
 {
+	delete this->brain;
 	std::cout << "| Dog Class | destructor called !" << std::endl;
 }
 

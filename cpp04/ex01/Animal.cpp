@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:25:53 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 12:41:02 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/08 23:46:18 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ Animal::Animal(std::string name) : type(name)
 	std::cout << "| Animal Class | parameterized constructor called !" << std::endl;
 }
 
-Animal::Animal(const Animal &other)
+Animal::Animal(const Animal &other): type(other.type)
 {
-	*this = other;
 	std::cout << "| Animal Class | copy constructor called !" << std::endl;
 }
 

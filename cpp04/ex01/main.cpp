@@ -6,15 +6,13 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:55:38 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 12:44:26 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:21:02 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
@@ -31,12 +29,14 @@ int main()
 	delete j;
 	delete i;
 
-	const WrongAnimal* k = new WrongAnimal();
-	const WrongAnimal* l = new WrongCat();
-	std::cout << l->getType() << " " << std::endl;
-	k->makeSound();
-	l->makeSound();
-	delete k;
-	delete l;
-	return 0;
+	Dog basic;
+	{
+    	Dog tmp = basic;
+	}
+    const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
+    for ( int i = 0; i < 4; i++ ) {
+        delete animals[i];
+    }
+
+    return 0;
 }

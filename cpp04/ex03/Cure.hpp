@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 01:36:44 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 23:29:26 by rpandipe         ###   ########.fr       */
+/*   Created: 2024/12/09 23:43:58 by rpandipe          #+#    #+#             */
+/*   Updated: 2024/12/09 23:44:25 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP__
-# define __CAT_HPP__
+#ifndef __Cure_HPP__
+# define __Cure_HPP__
 
-#include "Animal.hpp"
+#include "AMateria.hpp"
 
-class Cat: public Animal
+class Cure: public AMateria
 {
 	public:
-		Cat();
-		Cat(const Cat &other);
-		Cat& operator=(const Cat &other);
-		~Cat();
-
-		virtual void 		makeSound() const;
-		std::string	getType() const;
+		Cure();
+		Cure(const Cure& other);
+		~Cure();
+		virtual AMateria* clone() const;
+		virtual void use(ICharacter& target);
+	private:
+		Cure& operator=(const Cure& other);
 };
 
 #endif

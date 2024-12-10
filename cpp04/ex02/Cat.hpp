@@ -6,16 +6,17 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:36:44 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 23:29:26 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:17:02 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __CAT_HPP__
 # define __CAT_HPP__
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 
-class Cat: public Animal
+class Cat: public AAnimal
 {
 	public:
 		Cat();
@@ -25,6 +26,10 @@ class Cat: public Animal
 
 		virtual void 		makeSound() const;
 		std::string	getType() const;
+		
+	private:
+		Brain *brain;
+
 };
 
 #endif
