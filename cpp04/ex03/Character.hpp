@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 00:00:37 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/10 10:30:07 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:09:43 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 #include <iostream>
+#include <string>
 
 class Character: public ICharacter
 {

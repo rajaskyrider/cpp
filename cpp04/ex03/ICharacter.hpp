@@ -6,12 +6,16 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 22:04:04 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/09 22:24:45 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:10:13 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __ICHARACTER_HPP__
 # define __ICHARACTER_HPP__
+
+#include <string>
+
+class AMateria;
 
 class ICharacter
 {

@@ -6,11 +6,11 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 11:44:04 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/10 11:45:26 by rpandipe         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:29:18 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MateriaSource.cpp"
+#include "MateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include "Character.hpp"
@@ -30,6 +30,8 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+
 	delete bob;
 	delete me;
 	delete src;
