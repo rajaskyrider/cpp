@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 11:10:47 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/11/27 16:00:43 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:55:54 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@
 
 class Contact{
 	public:
-		std::string	firstname;
-		std::string	lastname;
-		std::string	nickname;
-		std::string	number;
-		std::string	secret;
+		void	setFields();
+		void	printFields() const;
+		void	truncateFields() const;
+		int 	checkEmpty() const;
+
+	private:
+		std::string	m_firstname;
+		std::string	m_lastname;
+		std::string	m_nickname;
+		std::string	m_number;
+		std::string	m_secret;
+		std::string	checkContact(std::string str);
+		void	truncateContact(std::string txt) const;
 };
 
 #endif

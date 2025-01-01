@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 11:37:23 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/11/27 18:08:37 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:57:21 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-
-std::string PhoneBook::checkContact(std::string str)
-{
-	std::string val;
-	
-	while (1)
-	{
-		std::cout << str;
-		std::getline(std::cin, val);
-		if (!val.empty())
-			break ;
-	}
-	return val;
-}
 
 void	PhoneBook::addContact(int index)
 {
@@ -32,24 +18,14 @@ void	PhoneBook::addContact(int index)
 	
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	this->contacts[index].firstname = checkContact("first name : ");
-	this->contacts[index].lastname = checkContact("last name : ");
-	this->contacts[index].nickname = checkContact("nick name : ");
-	this->contacts[index].number = checkContact("Phone number : ");
-	this->contacts[index].secret = checkContact("Darkest secret : ");
+	this->contacts[index].setFields();
 }
 
 void	PhoneBook::printContact(int index) const
 {
 	index--;
-	if (index >= 0 && index < 8 && !this->contacts[index].firstname.empty())
-	{
-		std::cout << "First name : " << this->contacts[index].firstname << std::endl;
-		std::cout << "Last name : " << this->contacts[index].lastname << std::endl;
-		std::cout << "Nick name : " << this->contacts[index].nickname << std::endl;
-		std::cout << "Phone Number : " << this->contacts[index].number << std::endl;
-		std::cout << "Darkest Secret : " << this->contacts[index].secret << std::endl;
-	}
+	if (index >= 0 && index < 8 && !this->contacts[index].checkEmpty())
+		this->contacts[index].printFields();
 	else
 		std::cout << "Index out of range !!" << std::endl;
 	std::cout << std::endl << std::endl;
@@ -73,13 +49,11 @@ void	PhoneBook::searchContact(void) const
               << std::setw(10) << std::right << "nickname" << "|" << std::endl;
 	for (int i = 0; i < 8; i++)
 	{
-		if (!this->contacts[i].firstname.empty())
+		if (!this->contacts[i].checkEmpty())
 		{
 			std::cout << "|" << std::setfill(' ') 
 			  << std::setw(10) << std::right << i + 1 << "|";
-			truncateContact(this->contacts[i].firstname);
-			truncateContact(this->contacts[i].lastname);
-			truncateContact(this->contacts[i].nickname);
+			this->contacts[i].truncateFields();
 			std::cout << std::endl;
 		}
 		else
