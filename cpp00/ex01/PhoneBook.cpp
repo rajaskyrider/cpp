@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 11:37:23 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/01 16:57:21 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/06 10:26:02 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ void	PhoneBook::printContact(int index) const
 	else
 		std::cout << "Index out of range !!" << std::endl;
 	std::cout << std::endl << std::endl;
-}
-
-void	PhoneBook::truncateContact(std::string txt) const
-{
-	std::cout << std::setw(10) << std::right;
-	if (txt.size() > 10)
-		std::cout << txt.substr(0, 9) + "." << "|";
-	else
-		std::cout << txt << "|";
 }
 
 void	PhoneBook::searchContact(void) const
