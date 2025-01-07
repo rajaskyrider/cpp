@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+         #
+#    By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 20:03:01 by rpandipe          #+#    #+#              #
-#    Updated: 2024/11/30 00:49:57 by rpandipe         ###   ########.fr        #
+#    Updated: 2025/01/06 15:31:14 by rpandipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = harl
 SRCS = $(wildcard *.cpp)
 OBJSDIR = objs
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.cpp=.o))
-RM = rm - rf
+RM = rm -rf
 
 all: $(NAME)
 
@@ -28,7 +28,7 @@ $(NAME) : $(OBJS)
 	$(CXX) $(CFLAG) -o $@ $(OBJS)
 
 clean:
-	$(RM) $(OBJDIR)
+	$(RM) $(OBJSDIR)
 
 fclean: clean
 	$(RM) $(NAME)

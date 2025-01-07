@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+         #
+#    By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 20:03:01 by rpandipe          #+#    #+#              #
-#    Updated: 2024/12/02 21:31:51 by rpandipe         ###   ########.fr        #
+#    Updated: 2025/01/06 15:37:12 by rpandipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = harlFilter
 SRCS = $(wildcard *.cpp)
 OBJSDIR = objs
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.cpp=.o))
-RM = rm - rf
+RM = rm -rf
 
 all: $(NAME)
 

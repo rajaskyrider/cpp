@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+         #
+#    By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 12:13:35 by rpandipe          #+#    #+#              #
-#    Updated: 2024/11/29 12:18:59 by rpandipe         ###   ########.fr        #
+#    Updated: 2025/01/06 13:42:10 by rpandipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJDIR = objs
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 RM = rm -rf
 
-all = $(NAME)
+all: $(NAME)
 
 $(OBJDIR)/%.o : %.cpp
 	@mkdir -p $(dir $@)

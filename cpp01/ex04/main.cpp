@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 21:44:20 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/11/29 22:32:54 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/06 15:25:23 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 		std::cerr << "Error opening the file "  << argv[1] << std::endl;
 		return (1);
 	}
-	std::ofstream newfile(std::string(argv[1]) + ".replace");
+	std::ofstream newfile((std::string(argv[1]) + ".replace").c_str());
 	if (!newfile.is_open())
 	{
 		std::cerr << "Error creating the file " << argv[1] << ".replace" << std::endl;

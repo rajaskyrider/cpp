@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:24:47 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/03 00:52:37 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:46:16 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Fixed::Fixed(const int n) : m_n(n << m_fractBits)
 	//std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float n) : m_n(std::roundf(n * (1 << m_fractBits)))
+Fixed::Fixed(const float n) : m_n(static_cast<int>(n * (1 << m_fractBits) + (n >= 0 ? 0.5f : -0.5f)))
 {
 	//std::cout << "Float constructor called" << std::endl;
 }
