@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:32:58 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/26 21:23:58 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:19:20 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,21 @@ void Bureaucrat::signForm(AForm& form)
         std::cout << this->getName() << " couldn't sign " << form.getName()
                   << " because " << e.what() << std::endl;
     }
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->m_name << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->m_name << " cannot execute " << form.getName() 
+			<< " because " << e.what() << std::endl;
+	}
+	
 }
 
 std::ostream& operator<<(std::ostream &stream, const Bureaucrat &bureaucrat)

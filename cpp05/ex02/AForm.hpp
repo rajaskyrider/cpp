@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:58:37 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/26 21:24:44 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:08:12 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ class AForm
 		int const m_signreq;
 		int	const m_execreq;
 		AForm();
-		AForm& operator=(AForm& other);
 
 	public:
 		AForm(AForm& other);
 		AForm(std::string name, int reqgrade, int execgrade);
-		~AForm();
+		AForm& operator=(AForm& other);
+		virtual ~AForm();
 
 		std::string getName() const;
 		bool getStatus() const;
@@ -44,6 +44,11 @@ class AForm
 				const char* what() const throw();
 		};
 		class	GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class	FormNotSignedException : public std::exception
 		{
 			public:
 				const char* what() const throw();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:58:37 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/26 20:58:24 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:52:15 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ class Form
 		int const m_signreq;
 		int	const m_execreq;
 		Form();
-		Form& operator=(Form& other);
 
 	public:
 		Form(Form& other);
 		Form(std::string name, int reqgrade, int execgrade);
+		Form& operator=(Form& other);
 		~Form();
 
 		std::string getName() const;

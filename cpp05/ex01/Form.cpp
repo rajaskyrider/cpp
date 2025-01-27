@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:25:54 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/26 20:58:08 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:52:50 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ Form::Form(std::string name, int reqgrade, int execgrade): m_name(name), m_sign(
 		throw(Form::GradeTooLowException());
 	else if (reqgrade < 1 || execgrade < 1)
 		throw(Form::GradeTooHighException());
+}
+
+Form& Form::operator=(Form& other)
+{
+	this->m_sign = other.getStatus();
 }
 
 Form::~Form()

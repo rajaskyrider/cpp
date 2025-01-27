@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:25:56 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/26 21:26:07 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:13:24 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ AForm::AForm(std::string name, int reqgrade, int execgrade): m_name(name), m_sig
 		throw(AForm::GradeTooLowException());
 	else if (reqgrade < 1 || execgrade < 1)
 		throw(AForm::GradeTooHighException());
+}
+
+AForm& AForm::operator=(AForm& other)
+{
+	this->m_sign = other.getStatus();
+	return (*this);
 }
 
 AForm::~AForm()
@@ -73,4 +79,9 @@ const char* AForm::GradeTooHighException::what() const throw()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return("Grade too low.");
+}
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+	return ("Form is not signed");
 }
