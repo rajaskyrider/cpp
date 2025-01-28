@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:36:42 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 12:36:57 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:48:04 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ Cat::Cat(): Animal("Cat")
 	std::cout << "| Cat Class | default constructor called !" << std::endl;
 }
 
-Cat::Cat(Cat &other): Animal(other)
+Cat::Cat(const Cat &other): Animal(other)
 {
 	std::cout << "| Cat Class | copy constructor called !" << std::endl;
 }
 
-Cat& Cat::operator=(Cat &other)
+Cat& Cat::operator=(const Cat &other)
 {
 	if (this != &other)
 	{

@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:48:32 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:16:59 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:59:01 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& other): AFor
 {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){}
+
+const char* ShrubberyCreationForm::FileNotCreatedException::what() const throw()
+{
+	return ("Failed to create the file.");
+}
 
 void  ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
@@ -40,7 +45,7 @@ void  ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 			out.close();
 		}
 		else
-			std::cerr <<"Failed to create the file." <<std::endl;
+			throw(ShrubberyCreationForm::FileNotCreatedException());
 	}
 	else
 		throw(AForm::FormNotSignedException());

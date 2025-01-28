@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:43:39 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:09:58 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:03:07 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ class ShrubberyCreationForm: public AForm
 		ShrubberyCreationForm(ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
 		void execute(Bureaucrat const & executor) const;
+		class FileNotCreatedException: public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 	private:
 		std::string const m_target;
 		ShrubberyCreationForm();

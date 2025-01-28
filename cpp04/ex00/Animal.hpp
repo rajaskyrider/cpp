@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:26:11 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 12:40:52 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:04:32 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

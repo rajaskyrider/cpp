@@ -67,6 +67,13 @@
 		"system_error": "cpp",
 		"type_traits": "cpp",
 		"utility": "cpp",
-		"numbers": "cpp"
+		"numbers": "cpp",
+		"format": "cpp",
+		"charconv": "cpp",
+		"chrono": "cpp",
+		"map": "cpp",
+		"span": "cpp",
+		"text_encoding": "cpp",
+		"cinttypes": "cpp"
 	}
 }
