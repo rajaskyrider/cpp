@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:50:18 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/04 16:53:31 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:15:54 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int main() {
     std::cout << "==== Testing with Multiple FragTraps ====" << std::endl;
 
     FragTrap frag4("Fragzilla");
-    frag4.attack("Enemy2");
-    frag4.takeDamage(80);
-    frag4.beRepaired(20);
     frag4.highFivesGuys();
+    frag4.attack("Enemy2");
+    frag4.takeDamage(100);
+    frag4.beRepaired(20);
+    frag4.takeDamage(100);
     std::cout << std::endl;
 
     std::cout << "==== Destruction Phase ====" << std::endl;

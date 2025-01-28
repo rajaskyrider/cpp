@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 10:49:52 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/04 16:56:14 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:15:29 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	FragTrap::highFivesGuys()
 {
 	if (this->getEnergyPoints() > 0)
 	{
-		std::cout << "| FragTrap | " << this->getName() << "high fives you !!" << std::endl;
+		std::cout << "| FragTrap | " << this->getName() << " high fives you !!" << std::endl;
 		int ep = this->getEnergyPoints();
 		this->setEnergyPoints(ep - 1);
 	}

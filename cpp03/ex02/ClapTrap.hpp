@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:15:56 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/04 16:52:05 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:15:57 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ class ClapTrap
 		void		setEnergyPoints(const int ep);
 		int			getAttackDamage() const;
 		void		setAttackDamage(const int ad);
-
-	private:
 		std::string	m_name;
 		int			m_hitPoints;
 		int			m_energyPoints;

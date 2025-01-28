@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:34:12 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/04 16:57:07 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:13:49 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (this->m_hitPoints > 0)
 	{
 		unsigned int hitPoints = static_cast<unsigned int>(m_hitPoints);
-		std::cout << "| ClapTrap|  " << this->m_name << " was attacked and lost " << amount << " of hit points!"
+		std::cout << "| ClapTrap |  " << this->m_name << " was attacked and lost " << amount << " of hit points!"
 				<< std::endl;
 		this->m_hitPoints = (amount > hitPoints) ? 0 : this->m_hitPoints - amount;;
 	}

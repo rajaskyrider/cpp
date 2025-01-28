@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 20:15:56 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/04 16:52:27 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:12:25 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ class ClapTrap
 		int			getAttackDamage() const;
 		void		setAttackDamage(const int ad);
 
-	private:
 		std::string	m_name;
 		int			m_hitPoints;
 		int			m_energyPoints;
 		int			m_attackDamage;
-
+		
 };
 
 #endif

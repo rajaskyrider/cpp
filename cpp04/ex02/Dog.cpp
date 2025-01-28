@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:53:47 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/09 01:17:12 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:19:55 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ Dog& Dog::operator=(const Dog &other)
 	{
 		std::cout << "| Dog Class | copy operator called !" << std::endl;
 		AAnimal::operator=(other);
+		delete this->brain;
+		this->brain = new Brain(*other.brain);
 	}
 	return *this;
 }

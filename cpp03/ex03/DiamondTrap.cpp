@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:00:57 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/05 16:09:58 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:32:33 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ DiamondTrap& DiamondTrap::operator=(DiamondTrap &other)
 
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "| DiamondTrap | Destructor called" << std::endl;
+	std::cout << "| DiamondTrap | " << this->m_name << " Destructor called" << std::endl;
 }
 
 void	DiamondTrap::whoAmI()

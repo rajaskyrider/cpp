@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 11:36:58 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/28 11:51:08 by rpandipe         ###   ########.fr       */
+/*   Created: 2025/01/27 11:23:07 by rpandipe          #+#    #+#             */
+/*   Updated: 2025/01/27 12:15:23 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm("PresidentialPardonForm", 25, 5), m_target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("RobotomyRequestForm", 72, 45), m_target(target)
 {}
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm& other): AForm(other)
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& other): AForm(other)
 {}
 
-PresidentialPardonForm::~PresidentialPardonForm(){}
+RobotomyRequestForm::~RobotomyRequestForm(){}
 
-void  PresidentialPardonForm::execute(Bureaucrat const & executor) const
+void  RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-
 	if (this->getStatus())
 	{
 		if (executor.getGrade() > this->getExecreq())
 			throw(AForm::GradeTooLowException());
-		std::cout << m_target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+		std::srand(time(0));
+		if ((std::rand() % 100 + 1) > 50)
+			std::cout << this->m_target << " has been robotomized" << std::endl;
+		else
+			std::cout << this->m_target << " robotomy failed" << std::endl;
 	}
 	else
 		throw(AForm::FormNotSignedException());

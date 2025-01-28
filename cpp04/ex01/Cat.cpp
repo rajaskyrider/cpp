@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:36:42 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/08 23:42:17 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:45:19 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Cat& Cat::operator=(const Cat &other)
 		std::cout << "| Cat Class | copy operator called !" << std::endl;
 		Animal::operator=(other);
 		delete this->brain;
-		this->brain = other.brain;
+		this->brain = new Brain(*other.brain);
 	}
 	return *this;
 }

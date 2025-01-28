@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 01:55:38 by rpandipe          #+#    #+#             */
-/*   Updated: 2024/12/09 01:21:02 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:52:10 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int main()
 
 	Dog basic;
 	{
+		std::cout << "Checking Deep Copy" << std::endl;
     	Dog tmp = basic;
 	}
+	std::cout << "---------------------" << std::endl;
     const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
     for ( int i = 0; i < 4; i++ ) {
         delete animals[i];
