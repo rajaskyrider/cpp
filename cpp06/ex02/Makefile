@@ -6,13 +6,13 @@
 #    By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 16:24:49 by rpandipe          #+#    #+#              #
-#    Updated: 2025/01/30 17:37:47 by rpandipe         ###   ########.fr        #
+#    Updated: 2025/02/11 11:28:28 by rpandipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 CFLAG = -Wall -Werror -Wextra -std=c++98
-NAME = serialization
+NAME = id
 SRCS = $(wildcard *.cpp)
 OBJSDIR = objs
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.cpp=.o))

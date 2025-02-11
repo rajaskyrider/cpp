@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 17:43:12 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/11 11:36:56 by rpandipe         ###   ########.fr       */
+/*   Created: 2025/02/11 11:26:02 by rpandipe          #+#    #+#             */
+/*   Updated: 2025/02/11 11:40:39 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __BASE_HPP__
-# define __BASE_HPP__
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-
-class Base
+int	main()
 {
-	public:
-		virtual ~Base();	
-};
-
-Base* generate(void);
-void identify(Base* p);
-void identify(Base& p);
-
-#endif
+	std::srand(time(0));
+	Base *ptr = generate();
+	identify(ptr);
+	identify(*ptr);
+	delete ptr;
+	return (0);
+}

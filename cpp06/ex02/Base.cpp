@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 17:46:45 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/30 18:23:30 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:43:43 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ Base* generate(void)
 {
 	int	n;
 	
-	std::srand(time(0));
 	n = std::rand() % 3;
 	switch(n)
 	{
@@ -47,7 +46,28 @@ void identify(Base* p)
 		std::cout << "Type cannot be identitifed" << std::endl;
 }
 
-void indentify(Base& p)
+void identify(Base& p)
 {
 	try
+	{
+		(void) dynamic_cast<A &>(p);
+		std::cout << "Actual type of reference is A" << std::endl;
+		return ;
+	}
+	catch(...){}
+	try
+	{
+		(void) dynamic_cast<B &>(p);
+		std::cout << "Actual type of reference is B" << std::endl;
+		return ;
+	}
+	catch(...){}
+	try
+	{
+		(void) dynamic_cast<C &>(p);
+		std::cout << "Actual type of reference is C" << std::endl;
+		return ;
+	}
+	catch(...){}
+	std::cout << "Type cannot be identitifed" << std::endl;
 }
