@@ -75,6 +75,8 @@
 		"span": "cpp",
 		"text_encoding": "cpp",
 		"cinttypes": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"list": "cpp",
+		"set": "cpp"
 	}
 }
