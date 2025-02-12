@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:58:37 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 10:52:15 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:31:49 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class Form
 		Form();
 
 	public:
-		Form(Form& other);
+		Form(const Form& other);
 		Form(std::string name, int reqgrade, int execgrade);
-		Form& operator=(Form& other);
+		Form& operator=(const Form& other);
 		~Form();
 
 		std::string getName() const;

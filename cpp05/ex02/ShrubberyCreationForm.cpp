@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:48:32 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/28 10:59:01 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:34:01 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", 145, 137), m_target(target)
 {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& other): AForm(other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other): AForm(other)
 {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){}

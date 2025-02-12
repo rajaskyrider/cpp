@@ -6,13 +6,13 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:25:56 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:13:24 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:32:40 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm(AForm& other): m_name(other.m_name), m_sign(other.m_sign), m_signreq(other.m_signreq), m_execreq(other.m_execreq)
+AForm::AForm(const AForm& other): m_name(other.m_name), m_sign(other.m_sign), m_signreq(other.m_signreq), m_execreq(other.m_execreq)
 {}
 
 AForm::AForm(std::string name, int reqgrade, int execgrade): m_name(name), m_sign(false), m_signreq(reqgrade), m_execreq(execgrade)
@@ -23,7 +23,7 @@ AForm::AForm(std::string name, int reqgrade, int execgrade): m_name(name), m_sig
 		throw(AForm::GradeTooHighException());
 }
 
-AForm& AForm::operator=(AForm& other)
+AForm& AForm::operator=(const AForm& other)
 {
 	this->m_sign = other.getStatus();
 	return (*this);

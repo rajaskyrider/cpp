@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:18:32 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/28 13:54:27 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:34:45 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 class Intern
 {
 	private:
-		Intern(Intern &other);
-		Intern& operator=(Intern &other);
+		Intern(const Intern &other);
+		Intern& operator=(const Intern &other);
 		AForm* createShrubbery(const std::string target);
 		AForm* createRobotomy(const std::string target);
 		AForm* createPardon(const std::string target);

@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:23:07 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:15:23 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:35:21 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("RobotomyRequestForm", 72, 45), m_target(target)
 {}
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& other): AForm(other)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other): AForm(other)
 {}
 
 RobotomyRequestForm::~RobotomyRequestForm(){}

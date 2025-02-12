@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:58:37 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:08:12 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:34:22 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class AForm
 		AForm();
 
 	public:
-		AForm(AForm& other);
+		AForm(const AForm& other);
 		AForm(std::string name, int reqgrade, int execgrade);
-		AForm& operator=(AForm& other);
+		AForm& operator=(const AForm& other);
 		virtual ~AForm();
 
 		std::string getName() const;

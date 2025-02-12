@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:35:20 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:09:02 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:35:00 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ class PresidentialPardonForm: public AForm
 {
 	public:
 		PresidentialPardonForm(std::string target);
-		PresidentialPardonForm(PresidentialPardonForm& other);
+		PresidentialPardonForm(const PresidentialPardonForm& other);
 		~PresidentialPardonForm();
 		void execute(Bureaucrat const & executor) const;
 	private:
 		std::string const m_target;
 		PresidentialPardonForm();
-		PresidentialPardonForm& operator=(PresidentialPardonForm& other);
+		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 };
 
 #endif

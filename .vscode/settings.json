@@ -74,6 +74,7 @@
 		"map": "cpp",
 		"span": "cpp",
 		"text_encoding": "cpp",
-		"cinttypes": "cpp"
+		"cinttypes": "cpp",
+		"*.tpp": "cpp"
 	}
 }

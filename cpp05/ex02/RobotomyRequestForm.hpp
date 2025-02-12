@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:23:05 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/01/27 12:09:51 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:33:38 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ class RobotomyRequestForm: public AForm
 {
 	public:
 		RobotomyRequestForm(std::string target);
-		RobotomyRequestForm(RobotomyRequestForm& other);
+		RobotomyRequestForm(const RobotomyRequestForm& other);
 		~RobotomyRequestForm();
 		void execute(Bureaucrat const & executor) const;
 	private:
 		std::string const m_target;
 		RobotomyRequestForm();
-		RobotomyRequestForm& operator=(RobotomyRequestForm& other);
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 };
 
 #endif

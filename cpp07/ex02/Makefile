@@ -5,27 +5,28 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/11 16:39:11 by rpandipe          #+#    #+#              #
-#    Updated: 2025/02/12 11:23:18 by rpandipe         ###   ########.fr        #
+#    Created: 2025/02/12 11:12:53 by rpandipe          #+#    #+#              #
+#    Updated: 2025/02/12 12:23:54 by rpandipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
-CFLAG = -Wall -Werror -Wextra -std=c++98
-NAME = basic
+CFLAGS = -Wall -Werror -Wextra -std=c++98
+NAME = array
 SRCS = $(wildcard *.cpp)
+HEADERS = $(wildcard *.hpp) $(wildcard *.tpp)
 OBJSDIR = objs
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.cpp=.o))
 RM = rm -rf
 
 all: $(NAME)
 
-$(OBJSDIR)/%.o : %.cpp
+$(OBJSDIR)/%.o: %.cpp $(HEADERS)
 	@mkdir -p $(OBJSDIR)
-	@$(CXX) $(CFLAG) -c $< -o $@
+	@$(CXX) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@$(CXX) $(CFLAG) -o $@ $(OBJS)
+	@$(CXX) $(CFLAGS) -o $@ $(OBJS)
 
 clean:
 	@$(RM) $(OBJSDIR)
@@ -36,3 +37,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
