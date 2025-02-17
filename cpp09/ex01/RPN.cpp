@@ -6,7 +6,7 @@
 /*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 21:52:05 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/15 23:16:27 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:19:17 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void RPN::calculate(const std::string& exp)
 		{
 			if (n < 0  || n > 10)
 			{
-				std::cout << "Error" << std::endl;
+				std::cerr << "Error" << std::endl;
 				return ;
 			}
 			m_ans.push(n);
 		}
 		else if (!operate(token[0]))
 		{
-			std::cout << "Error" << std::endl;
+			std::cerr << "Error" << std::endl;
 			return ;
 		}
 	}
