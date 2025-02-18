@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:54:47 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/17 10:45:32 by rpandipe         ###   ########.fr       */
+/*   Created: 2025/02/18 13:59:14 by rpandipe          #+#    #+#             */
+/*   Updated: 2025/02/18 15:54:03 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,101 +28,108 @@ int* PmergeMe::getJacobsthal(int n)
 	return seq;
 }
 
-void PmergeMe::insertLoser(std::vector<int>& winner, std::vector<int>& loser)
+void PmergeMe::insertWinner(int i, int lim, std::vector<int> &winner, std::vector<int> &subchain)
 {
-	int sn, b, count = 0;
-	int *seq;
-	size_t j;
-
-	sn = loser.size();
-	seq = getJacobsthal(sn);
-	for (int i = 0; i < sn; i++)
-	{
-		if (seq[i] >= sn)
-			break;
-		b = loser.at(seq[i]);
-		for (j = 0; j < winner.size(); j++)
-		{
-			if (b < winner[j])
-			{
-				winner.insert(winner.begin() + j, b);
-				count++;
-				break;
-			}
-		}
-	}
-	for (int i = count - 1; i >= 0; i--)
-		loser.erase(loser.begin() + seq[i]);
-	while (loser.size() > 0)
-	{
-		b = loser[0];
-		loser.erase(loser.begin());
-		for (j = 0; j < winner.size(); j++)
-		{
-			if  (b < winner[j])
-			{
-				winner.insert(winner.begin() + j, b);
-				break ;
-			}
-			else if (j == winner.size() - 1)
-			{
-				winner.push_back(b);
-				break ;
-			}
-		}
-	}
-	delete[] seq;
+	for (int i; i < lim; i++)
+		subchain.push_back(winner[i]);
 }
 
-void PmergeMe::sortWinner(std::vector<int> &winner)
+void PmergeMe::insertLoser(std::vector<int>& subchain, int c)
 {
-	std::vector<int> subloser;
-	int n = winner.size();
+	size_t n = subchain.size();
+	int *seq;
+	
+	seq = getJacobsthal(n / 2);
+	for (int i = 1; i < n; i = i + c)
+	{
+		
+	}
+}
+
+void PmergeMe::sortWinner(std::vector<int> &winner, int c)
+{
+	std::vector<int> subchain;
+	size_t n = winner.size() / c;
 	
 	if (n > 3)
 	{
-		for (size_t i = 0; i + 1  < winner.size(); i++)
+		for (size_t i = 0; i + c  < winner.size(); i = i + (2 * c))
 		{
-			subloser.push_back(winner[i] > winner[i + 1] ? winner[i+1] : winner[i]);
-			winner.erase(winner[i] > winner[i + 1] ? winner.begin() + i + 1 : winner.begin() + i);
+			if (winner[i] > winner[i + c])
+				insertWinner(i, i + (2 * c), winner, subchain);
+			else
+			{
+				insertWinner(i + c, i + (2 * c), winner, subchain);
+				insertWinner(i, i + c, winner, subchain);
+			}
 		}
-		sortWinner(winner);
-		insertLoser(winner, subloser);
+		sortWinner(subchain, c * 2);
+		insertLoser(subchain, c);
 	}
 	else
 	{
-		if ((n == 2) && (winner[0] > winner[1]))
-			std::swap(winner[0], winner[1]);
+		if ((n == 2) && (winner[0] > winner[c]))
+		{
+			insertWinner(c, c + (2 * c), winner, subchain);
+			insertWinner(0, (2 * c), winner, subchain);
+		}
 		else if (n == 3)
 		{
-			if (winner[0] > winner[1]) std::swap(winner[0], winner[1]);
-			if (winner[1] > winner[2]) std::swap(winner[1], winner[2]);
-			if (winner[0] > winner[1]) std::swap(winner[0], winner[1]);
+			if (winner[0] > winner[c])
+			{
+				insertWinner(c, c + (2 * c), winner, subchain);
+				insertWinner(0, c, winner, subchain);
+			}
+			else
+				insertWinner(0 , 2 * c, winner, subchain);
+			if (winner[c] > winner[c * 2])
+			{
+				insertWinner(c * 2, (c * 2) + (2 * c), winner, subchain);
+				insertWinner(c, c * 2, winner, subchain);
+			}
+			if (winner[0] > winner[c])
+			{
+				for (int i = 0; i < c; i++)
+					std::swap(subchain[i], subchain[i+c]);
+			}
 		}
 	}
+	winner.clear();
+	winner.assign(subchain.begin(), subchain.end());
 }
+
 
 void PmergeMe::sortVector(std::vector<int> &v)
 {
 	int n = v.size();
 	int lmt = n % 2 == 0 ? n : n - 1;
-	std::vector<int> winner;
-	std::vector<int> loser;
+	std::vector<int> chain;
 
-	if (n <= 3)
+	/*if (n <= 3)
 	{
 		sortWinner(v);
 		return ;
-	}
+	}*/
 	for (int i = 0; i < lmt; i = i + 2)
 	{
-		winner.push_back(v[i] > v[i+1] ? v[i] : v[i+1]);
-		loser.push_back(v[i] > v[i+1] ? v[i+1] : v[i]);
+		if (v[i] > v[i+1])
+		{
+			chain.push_back(v[i]);
+			chain.push_back(v[i+1]);
+		}
+		else
+		{
+			chain.push_back(v[i+1]);
+			chain.push_back(v[i]);
+		}
 	}
 	if (n != lmt)
-		loser.push_back(v[n - 1]);
-	sortWinner(winner);
-	insertLoser(winner, loser);
+	{
+		chain.push_back(-1);
+		chain.push_back(v[n-1]);
+	}
+	sortWinner(chain, 2);
+	//insertLoser(winner, loser);
 	v.clear();
-	v.assign(winner.begin(), winner.end());
+	v.assign(chain.begin(), chain.end());
 }
