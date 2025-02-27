@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:59:14 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/21 09:36:42 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:49:56 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,35 @@ void PmergeMe::insertWinner(int i, int lim, std::vector<int> &winner, std::vecto
 
 void PmergeMe::insertLoser(std::vector<int>& subchain, int c)
 {
-	size_t n = subchain.size();
-	int group_num = n / c;
-	int *seq;
-	int group, start, end, b, val;
-	std::vector<int>::iterator it;
-	
-	seq = getJacobsthal(group_num);
-	for (int i = 0; i < group_num; i++)
-	{
-		group = seq[i] % group_num;
-		start = group * c;
-		end = start + c;
-		b = subchain.at(start + 1);
-		it = std::lower_bound(subchain.begin() + start, subchain.begin() + end, b);
-		for (int k = start; k < end; k++)
-		{
-			val = subchain[k];
-			subchain.erase(subchain.begin() + start);
-			subchain.insert(it, val);
-		}
-	}
-	delete[] seq;
+    size_t n = subchain.size();
+    int group_num = n / c;
+    int *seq;
+    int group, end, b;
+	size_t start;
+    std::vector<int>::iterator pos;
+    
+    seq = getJacobsthal(group_num);
+    for (int i = 0; i < group_num; i++)
+    {
+        group = seq[i] % group_num;
+        start = group * c;
+        end = start + c;
+        if (start + 1 >= subchain.size())  // safety check
+            continue;
+        // b is the loser (assumed to be at index start+1)
+        b = subchain.at(start + 1);
+        // Perform binary search on the block [start, end) using b as the key.
+        pos = std::lower_bound(subchain.begin() + start, subchain.begin() + end, b);
+        // Remove the loser from its current position.
+        subchain.erase(subchain.begin() + start + 1);
+        // Adjust the block size after removal.
+        end = start + c - 1;
+        // Insert b into the position found by binary search.
+        subchain.insert(pos, b);
+    }
+    delete[] seq;
 }
+
 
 void PmergeMe::sortWinner(std::vector<int> &winner, int c)
 {
@@ -119,11 +125,11 @@ void PmergeMe::sortVector(std::vector<int> &v)
 	int lmt = n % 2 == 0 ? n : n - 1;
 	std::vector<int> chain;
 
-	/*if (n <= 3)
+	if (n <= 3)
 	{
-		sortWinner(v);
+		sortWinner(v, 2);
 		return ;
-	}*/
+	}
 	for (int i = 0; i < lmt; i = i + 2)
 	{
 		if (v[i] > v[i+1])

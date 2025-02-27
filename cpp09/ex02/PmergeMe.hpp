@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:28:09 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/25 09:56:38 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:40:03 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe& operator=(const PmergeMe &other);
 		int* getJacobsthal(int n);
-		void sortWinner(std::vector<int>& winners);
-		void insertLosers(std::vector<int>& chain, const std::vector<int>& losers, const std::vector<int>& winners);
+		void sortWinner(std::vector<std::pair<int, int> > &winner, int c);
+		void insertLoser(std::vector<int>& subchain, int c);
 		void insertWinner(int i, int lim, std::vector<int> &winner, std::vector<int> &subchain);
 };
 

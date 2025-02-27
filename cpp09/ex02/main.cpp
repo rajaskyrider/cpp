@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 21:21:18 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/17 10:41:44 by rpandipe         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:24:59 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int main()
 	std::vector<int> n;
 
 	n.push_back(2);
-	n.push_back(5);
-	n.push_back(7);
-	n.push_back(9);
-	n.push_back(10);
-	n.push_back(1);
-	n.push_back(3);
 	n.push_back(4);
 	n.push_back(6);
+	n.push_back(9);
+	n.push_back(1);
+	n.push_back(3);
+	n.push_back(5);
+	n.push_back(7);
+	n.push_back(10);
 	n.push_back(8);
-	n.push_back(11);
+	//n.push_back(11);
 	std::cout << "Unorted Array: ";
 	for (size_t i = 0; i < n.size(); i++)
 			std::cout << n[i] << " ";
