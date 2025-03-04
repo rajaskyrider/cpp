@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 13:59:14 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/27 16:49:56 by rpandipe         ###   ########.fr       */
+/*   Created: 2025/02/27 17:02:23 by rpandipe          #+#    #+#             */
+/*   Updated: 2025/03/02 22:42:17 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe(){}
+
+bool PmergeMe::comparePairs(const std::pair<int, int> &a, const std::pair<int, int> &b) 
+{
+	return a.first < b.first;
+}
 
 int* PmergeMe::getJacobsthal(int n)
 {
@@ -28,128 +33,100 @@ int* PmergeMe::getJacobsthal(int n)
 	return seq;
 }
 
-void PmergeMe::insertWinner(int i, int lim, std::vector<int> &winner, std::vector<int> &subchain)
+void PmergeMe::insertLoser(std::vector<std::pair<int, int> > &chain, int c)
 {
-	for (int k = i; k < lim; k++)
-		subchain.push_back(winner[k]);
+	size_t n = chain.size() / c;
+	int *seq = getJacobsthal(n);
+	std::vector<std::pair<int, int> >::iterator new_pos, old_pos, pair_pos;
+	std::vector<int> idx;
+	std::vector<std::pair<int, int> > winner, loser, copy;
+
+	winner.reserve(chain.size()); // reserve capacity to stop reallocation when inserting loser. so old_pos is automatically shifted right.
+	for (size_t i = 0; i  < chain.size(); i += c)
+		for (int j = 0; j < c; j++)
+			winner.push_back(chain[i + j]);
+
+	for(size_t i = c - 1; i  < chain.size(); i += c)
+		for (int j = 0; j < c; j++)
+			loser.push_back(chain[i + j]);
+
+	copy.assign(winner.begin(), winner.end());
+
+	for (int i = 0; i < loser.size(); i++)
+		idx.push_back(i);
+	for (size_t i = 0; seq[i] < loser.size(); i++)
+	{
+		old_pos = loser.begin() + seq[i] + c;
+		pair_pos = std::find(winner.begin() + seq[i] + c , winner.end(), copy[seq[i] + c]);
+		new_pos = std::lower_bound(winner.begin(), pair_pos, old_pos->first, PmergeMe::comparePairs);
+		for (int j = 0; j < c; j++)
+			winner.insert(new_pos, *(old_pos + j));
+		idx.erase(idx.begin() + seq[i] - i);
+	}
+	for (std::vector<int>::iterator it = idx.begin(); it != idx.end(); it++)
+	{
+		old_pos = loser.begin() + *it + c;
+		pair_pos = std::find(winner.begin() + *it + c , winner.end(), copy[*it + c]);
+		new_pos = std::lower_bound(winner.begin(), pair_pos, old_pos->first, PmergeMe::comparePairs);
+		for (int j = 0; j < c; j++)
+			winner.insert(new_pos, *(old_pos + j));
+	}
 }
 
-void PmergeMe::insertLoser(std::vector<int>& subchain, int c)
+void PmergeMe::sortLoser(std::vector<std::pair<int, int> > &winner, std::vector<int> &res)
 {
-    size_t n = subchain.size();
-    int group_num = n / c;
-    int *seq;
-    int group, end, b;
-	size_t start;
-    std::vector<int>::iterator pos;
-    
-    seq = getJacobsthal(group_num);
-    for (int i = 0; i < group_num; i++)
-    {
-        group = seq[i] % group_num;
-        start = group * c;
-        end = start + c;
-        if (start + 1 >= subchain.size())  // safety check
-            continue;
-        // b is the loser (assumed to be at index start+1)
-        b = subchain.at(start + 1);
-        // Perform binary search on the block [start, end) using b as the key.
-        pos = std::lower_bound(subchain.begin() + start, subchain.begin() + end, b);
-        // Remove the loser from its current position.
-        subchain.erase(subchain.begin() + start + 1);
-        // Adjust the block size after removal.
-        end = start + c - 1;
-        // Insert b into the position found by binary search.
-        subchain.insert(pos, b);
-    }
-    delete[] seq;
+	res.clear();
+	for (std::vector<std::pair<int, int> >::iterator it = winner.begin(); it != winner.end(); it++)
+	{
+		res.push_back(it->first);
+		res.push_back(it->second);
+	}
+	res.reserve(res.size() * 2);
+	for (size_t i = 0; i < res.size(); i+=2)
+	{
+		
+	}
 }
 
-
-void PmergeMe::sortWinner(std::vector<int> &winner, int c)
+void PmergeMe::sortWinner(std::vector<std::pair<int, int> > &winner, int c)
 {
-	std::vector<int> subchain;
-	size_t n = winner.size() / c;
-	
+	size_t n = winner.size() / c + ((c > 1 && winner.size() / 2 == 0) ? 0 : 1);
+
 	if (n > 3)
 	{
-		for (size_t i = 0; i + c  < winner.size(); i = i + (2 * c))
+		for (size_t i = 0; i  < winner.size() - c; i += 2 * c)
 		{
-			if (winner[i] > winner[i + c])
-				insertWinner(i, i + (2 * c), winner, subchain);
-			else
-			{
-				insertWinner(i + c, i + (2 * c), winner, subchain);
-				insertWinner(i, i + c, winner, subchain);
-			}
+			if (winner[i].first > winner[i + c].first)
+				std::swap(winner[i], winner[i + c]);
 		}
-		sortWinner(subchain, c * 2);
-		insertLoser(subchain, c);
+		sortWinner(winner, c * 2);
+		if (c != 1)
+			insertLoser(winner, c);
 	}
-	else
-	{
-		if ((n == 2) && (winner[0] > winner[c]))
-		{
-			insertWinner(c, c + (2 * c), winner, subchain);
-			insertWinner(0, (2 * c), winner, subchain);
-		}
-		else if (n == 3)
-		{
-			if (winner[0] > winner[c])
-			{
-				insertWinner(c, c + (2 * c), winner, subchain);
-				insertWinner(0, c, winner, subchain);
-			}
-			else
-				insertWinner(0 , 2 * c, winner, subchain);
-			if (winner[c] > winner[c * 2])
-			{
-				insertWinner(c * 2, (c * 2) + (2 * c), winner, subchain);
-				insertWinner(c, c * 2, winner, subchain);
-			}
-			if (winner[0] > winner[c])
-			{
-				for (int i = 0; i < c; i++)
-					std::swap(subchain[i], subchain[i+c]);
-			}
-		}
-	}
-	winner.clear();
-	winner.assign(subchain.begin(), subchain.end());
 }
-
 
 void PmergeMe::sortVector(std::vector<int> &v)
 {
+	std::vector<std::pair<int, int> > chain;
 	int n = v.size();
-	int lmt = n % 2 == 0 ? n : n - 1;
-	std::vector<int> chain;
+	int limit = n % 2 == 0 ? n : n - 1;
 
 	if (n <= 3)
 	{
-		sortWinner(v, 2);
+		//TODO
 		return ;
 	}
-	for (int i = 0; i < lmt; i = i + 2)
+	for (int i = 0; i < limit; i = i + 2)
 	{
 		if (v[i] > v[i+1])
-		{
-			chain.push_back(v[i]);
-			chain.push_back(v[i+1]);
-		}
+			chain.push_back(std::pair<int, int>(v[i],v[i+1]));
 		else
-		{
-			chain.push_back(v[i+1]);
-			chain.push_back(v[i]);
-		}
+			chain.push_back(std::pair<int, int>(v[i+1],v[i]));
 	}
-	if (n != lmt)
-	{
-		chain.push_back(-1);
-		chain.push_back(v[n-1]);
-	}
-	sortWinner(chain, 2);
-	insertLoser(chain, 2);
-	v.clear();
-	v.assign(chain.begin(), chain.end());
+	if (n != limit)
+		chain.push_back(std::pair<int, int>(-1, v[n -1]));
+	
+	chain.reserve(chain.size() * 2); // reserve double capacity to stop reallocation when inserting loser. so old_pos is automatically shifted right.
+	sortWinner(chain, 1);
+	sortLoser(chain, v);
 }

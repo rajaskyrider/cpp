@@ -3,66 +3,289 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpandipe <rpandipe.student.42luxembourg    +#+  +:+       +#+        */
+/*   By: rpandipe <rpandie@student.42luxembourg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 17:02:23 by rpandipe          #+#    #+#             */
-/*   Updated: 2025/02/27 18:46:31 by rpandipe         ###   ########.fr       */
+/*   Created: 2025/03/03 10:23:28 by rpandipe          #+#    #+#             */
+/*   Updated: 2025/03/04 22:16:12 by rpandipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <cmath>
 
 PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe(){}
 
-int* PmergeMe::getJacobsthal(int n)
+void PmergeMe::insertLoser(std::vector<int> &winner, std::vector<int> &loser, int val_odd, std::vector<int> &rem, std::vector<int> &chain, bool is_odd, int c)
 {
-	int *seq = new int[n];
-	seq[0] = 1;
-	if (n > 1)
-		seq[1] = 3;
+	std::vector<int>::iterator pos;
+	std::vector<int> ans;
+	size_t jc = 3, cnt = 0, idx, sub = 0;
 
-	for(int i = 2; i < n; i++)
-		seq[i] = seq[i - 1] + (2 * seq[i - 2]);
-	return seq;
-}
-
-void PmergeMe::sortWinner(std::vector<std::pair<int, int> > &winner, int c)
-{
-	size_t n = winner.size() / c + (c > 1 && n / 2 == 0) ? 0 : 1;
-
-	if (n > 3)
+	if (loser.size() == 1)
 	{
-		for (size_t i = 0; i  < winner.size() - 1; i += c)
+		pos = std::upper_bound(winner.begin(), winner.end(), *loser.begin());
+		winner.insert(pos, *loser.begin());
+	}
+	else if (loser.size()  > 1)
+	{
+		while(!loser.empty())
 		{
-			if (winner[i].first > winner[i + c].first)
-				winner.swap(i , i+c);
+			idx = getJacobsthal(jc) - getJacobsthal(jc -1);
+			if (idx > loser.size())
+				idx = loser.size();
+			sub = 0;
+			while (idx)
+			{
+				pos = winner.begin();
+				if (getJacobsthal(jc + cnt) - sub <= winner.size())
+					pos = winner.begin() + getJacobsthal(jc + cnt) - sub;
+				else
+					pos = winner.end();
+				pos = std::upper_bound(winner.begin(), pos, *(loser.begin() + idx - 1));
+				winner.insert(pos, *(loser.begin() + idx - 1));
+				loser.erase(loser.begin() + idx - 1);
+				idx--;
+				sub++;
+				cnt++;
+			}
+			jc++;
 		}
 	}
+	if(is_odd)
+	{
+		pos = std::upper_bound(winner.begin(), winner.end(), val_odd);
+		winner.insert(pos, val_odd);
+	}
+	for (std::vector<int>::iterator i = winner.begin(); i != winner.end(); i++)
+	{
+        std::vector<int>::iterator it = std::find(chain.begin(), chain.end(), *i);
+        ans.insert(ans.end(), it - (c - 1), it + 1);
+    }
+	ans.insert(ans.end(), rem.begin(), rem.end());
+	chain = ans;
 }
 
-void PmergeMe::sortVector(std::vector<int> &v)
+void PmergeMe::insertLoser(std::deque<int> &winner, std::deque<int> &loser, int val_odd, std::deque<int> &rem, std::deque<int> &chain, bool is_odd, int c)
 {
-	std::vector<std::pair<int, int> > chain;
-	int n = v.size();
-	int limit = n % 2 == 0 ? n : n - 1;
+	std::deque<int>::iterator pos;
+	std::deque<int> ans;
+	size_t jc = 3, cnt = 0, idx, sub = 0;
 
-	if (n <= 3)
+	if (loser.size() == 1)
 	{
-		//TODO
+		pos = std::upper_bound(winner.begin(), winner.end(), *loser.begin());
+		winner.insert(pos, *loser.begin());
+	}
+	else if (loser.size()  > 1)
+	{
+		while(!loser.empty())
+		{
+			idx = getJacobsthal(jc) - getJacobsthal(jc -1);
+			if (idx > loser.size())
+				idx = loser.size();
+			sub = 0;
+			while (idx)
+			{
+				pos = winner.begin();
+				if (getJacobsthal(jc + cnt) - sub <= winner.size())
+					pos = winner.begin() + getJacobsthal(jc + cnt) - sub;
+				else
+					pos = winner.end();
+				pos = std::upper_bound(winner.begin(), pos, *(loser.begin() + idx - 1));
+				winner.insert(pos, *(loser.begin() + idx - 1));
+				loser.erase(loser.begin() + idx - 1);
+				idx--;
+				sub++;
+				cnt++;
+			}
+			jc++;
+		}
+	}
+	if(is_odd)
+	{
+		pos = std::upper_bound(winner.begin(), winner.end(), val_odd);
+		winner.insert(pos, val_odd);
+	}
+	for (std::deque<int>::iterator i = winner.begin(); i != winner.end(); i++)
+	{
+        std::deque<int>::iterator it = std::find(chain.begin(), chain.end(), *i);
+        ans.insert(ans.end(), it - (c - 1), it + 1);
+    }
+	ans.insert(ans.end(), rem.begin(), rem.end());
+	chain = ans;
+}
+
+void PmergeMe::sortLoser(std::vector<int> &chain, int c, std::vector<int>::iterator start, std::vector<int>::iterator end)
+{
+	std::vector<int> winner , loser, rem;
+	bool is_odd = (chain.size() / c) % 2 == 1;
+	int val_odd = 0;
+
+	winner.push_back(*(start + c - 1)); // a1
+	winner.push_back(*(start + (2 * c) - 1)); // b1
+
+	for (std::vector<int>::iterator it = start + (2 * c); it < end; it += c)
+	{
+		loser.push_back(*(it + c - 1)); // a
+		it += c;
+		winner.push_back(*(it + c - 1)); // b
+	}
+	if (is_odd)
+		val_odd = *(end + c - 1);
+	rem.insert(rem.end(), end + (c * is_odd), chain.end());
+	if (is_odd || !loser.empty())
+		insertLoser(winner, loser, val_odd, rem, chain, is_odd, c);
+}
+
+void PmergeMe::sortLoser(std::deque<int> &chain, int c, std::deque<int>::iterator start, std::deque<int>::iterator end)
+{
+	std::deque<int> winner , loser, rem;
+	bool is_odd = (chain.size() / c) % 2 == 1;
+	int val_odd = 0;
+
+	winner.push_back(*(start + c - 1)); // a1
+	winner.push_back(*(start + (2 * c) - 1)); // b1
+
+	for (std::deque<int>::iterator it = start + (2 * c); it < end; it += c)
+	{
+		loser.push_back(*(it + c - 1)); // a
+		it += c;
+		winner.push_back(*(it + c - 1)); // b
+	}
+	if (is_odd)
+		val_odd = *(end + c - 1);
+	rem.insert(rem.end(), end + (c * is_odd), chain.end());
+	if (is_odd || !loser.empty())
+		insertLoser(winner, loser, val_odd, rem, chain, is_odd, c);
+}
+
+void PmergeMe::sortWinner(std::vector<int> &winner, int c)
+{
+	int n = winner.size() / c;
+	bool is_odd = n % 2 == 1;
+	std::vector<int>::iterator start, end;
+
+	if (n < 2)
 		return ;
-	}
-	for (int i = 0; i < limit; i = i + 2)
+	start = winner.begin();
+	end = winner.begin() + ((c * n) - (is_odd * c));
+	for (std::vector<int>::iterator it = start; it < end; it += 2 * c)
 	{
-		if (v[i] > v[i+1])
-			chain.push_back(std::pair<int, int>(v[i],v[i+1]));
-		else
-			chain.push_back(std::pair<int, int>(v[i+1],v[i]));
+		if (*(it + c - 1) > *(it + (c * 2) - 1))
+		{
+			for (int j = 0; j < c; j++)
+				std::swap(*(it + j), *(it + j + c));
+		}
 	}
-	if (n != limit)
-		chain.push_back(std::pair<int, int>(-1, v[n -1]));
-	
-	sortWinner(chain, 1);
-	insertLoser(chain, 1);
+	sortWinner(winner, c * 2);
+	sortLoser(winner, c, start, end);
+}
+
+void PmergeMe::sortWinner(std::deque<int> &winner, int c)
+{
+	int n = winner.size() / c;
+	bool is_odd = n % 2 == 1;
+	std::deque<int>::iterator start, end;
+
+	if (n < 2)
+		return ;
+	start = winner.begin();
+	end = winner.begin() + ((c * n) - (is_odd * c));
+	for (std::deque<int>::iterator it = start; it < end; it += 2 * c)
+	{
+		if (*(it + c - 1) > *(it + (c * 2) - 1))
+		{
+			for (int j = 0; j < c; j++)
+				std::swap(*(it + j), *(it + j + c));
+		}
+	}
+	sortWinner(winner, c * 2);
+	sortLoser(winner, c, start, end);
+}
+
+void PmergeMe::getVector(int argc, char **argv, std::vector<int> &v)
+{
+	int n;
+	std::stringstream ss;
+
+	for (int i = 1; i < argc; i++)
+	{
+		ss.clear();
+		ss << argv[i];
+		if (!(ss >> n))
+			throw std::invalid_argument("Invalid inputs");
+		if (n < 0)
+			throw std::invalid_argument("Negative numbers are not allowed");
+		if (v.end() != std::find(v.begin(), v.end(), n))
+			throw std::invalid_argument("Duplicates are not allowed");
+		v.push_back(n);
+	}
+}
+
+void PmergeMe::getdeque(int argc, char **argv, std::deque<int> &v)
+{
+	int n;
+	std::stringstream ss;
+
+	for (int i = 1; i < argc; i++)
+	{
+		ss.clear();
+		ss << argv[i];
+		if (!(ss >> n))
+			throw std::invalid_argument("Invalid inputs");
+		if (n < 0)
+			throw std::invalid_argument("Negative numbers are not allowed");
+		if (v.end() != std::find(v.begin(), v.end(), n))
+			throw std::invalid_argument("Duplicates are not allowed");
+		v.push_back(n);
+	}
+}
+
+void PmergeMe::sortVector(int argc, char **argv)
+{
+	std::vector<int> m;
+
+	clock_t start, end;
+	start = clock();
+	getVector(argc, argv, m);
+	std::cout << "Unsorted Array: ";
+	for (size_t i = 0; i < m.size(); i++)
+			std::cout << m[i] << " ";
+	std::cout << std::endl;
+	sortWinner(m, 1);
+	end = clock();
+	std::cout << "Sorted Array: ";
+	for (size_t i = 0; i < m.size(); i++)
+			std::cout << m[i] << " ";
+	std::cout << std::endl;
+	double elapsed_time_micro = static_cast<double>(end - start) * (1000000.0 / CLOCKS_PER_SEC);
+	std::cout << "Execution time with std::vector for " << argc - 1 << " number : " << elapsed_time_micro << " µs" << std::endl;
+}
+
+void PmergeMe::sortdeque(int argc, char **argv)
+{
+	std::deque<int> m;
+
+	clock_t start, end;
+	start = clock();
+	getdeque(argc, argv, m);
+	std::cout << "Unsorted Array: ";
+	for (size_t i = 0; i < m.size(); i++)
+			std::cout << m[i] << " ";
+	std::cout << std::endl;
+	sortWinner(m, 1);
+	end = clock();
+	std::cout << "Sorted Array: ";
+	for (size_t i = 0; i < m.size(); i++)
+			std::cout << m[i] << " ";
+	std::cout << std::endl;
+	double elapsed_time_micro = static_cast<double>(end - start) * (1000000.0 / CLOCKS_PER_SEC);
+	std::cout << "Execution time with std::deque for " << argc - 1 << " number : " << elapsed_time_micro << " µs" << std::endl;
+}
+
+int PmergeMe::getJacobsthal(int k) 
+{
+    return round((pow(2, k + 1) + pow(-1, k)) / 3);
 }
